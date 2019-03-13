@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:id="@+id/login_root"
+    android:background="@drawable/biblio">
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Cual elemento deseas canjear?"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tus puntos son: "
+        android:textSize="28sp"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PUNTOS"
+        android:textSize="25sp"
+        android:layout_marginBottom="20dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:padding="10dp"
+        android:gravity="center"
+        android:orientation="vertical">
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rg_puntos">
+            <RadioButton
+                android:id="@+id/radio_lapicero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lapicero Icesi (20 puntos)"
+                android:textSize="25sp"/>
+            <RadioButton
+                android:id="@+id/radio_cuaderno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cuaderno (30 puntos)"
+                android:textSize="25sp"/>
+            <RadioButton
+                android:id="@+id/radio_libreta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Libreta Icesi (40 puntos)"
+                android:textSize="25sp"/>
+            <RadioButton
+                android:id="@+id/radio_camiseta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Camiseta Icesi (80 puntos)"
+                android:textSize="25dp"/>
+            <RadioButton
+                android:id="@+id/radio_saco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saco Icesi (100 puntos)"
+                android:textSize="25dp"/>
+
+        </RadioGroup>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CANJEAR"
+            android:textColor="#fff"
+            android:background="#2a6478"
+            android:id="@+id/btn_canje"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="40dp"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
