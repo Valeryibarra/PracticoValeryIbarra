@@ -3,6 +3,7 @@ package eileen.com.practicovalery;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -12,6 +13,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -23,6 +25,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.io.IOException;
 import java.util.List;
@@ -99,12 +104,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     me.setSnippet("Usted se encuentra en: " + getAddress(location.getLatitude(),location.getLongitude()));
 
                     LatLng latLngCurrent = new LatLng(location.getLatitude(), location.getLongitude());
-                    LatLng latLngBiblioDown= new LatLng(3.3416307, -76.5298169);
-                    LatLng latLngBiblioUp= new LatLng(3.319336233, -76.53010088);
-                    if((latLngCurrent.latitude >latLngBiblioDown.latitude) &&(latLngCurrent.latitude < latLngBiblioUp.latitude)){
+
+
+                    LatLng latLngBiblioUpA= new LatLng(3.341950, -76.530073);
+                    LatLng latLngBiblioUpB= new LatLng(3.341950, -76.5298169);
+                    LatLng latLngBiblioDownC= new LatLng(3.341671, -76.530073);
+                    LatLng latLngBiblioDownD= new LatLng(3.341671, -76.529805);
+
+                    PolygonOptions polygonOptions=new PolygonOptions();
+
+
+                    Polyline lineAB = mMap.addPolyline(new PolylineOptions()
+                            .add(latLngBiblioUpA,latLngBiblioUpB)
+                            .width(5)
+                            .color(Color.RED));
+
+                    Polyline lineAC = mMap.addPolyline(new PolylineOptions()
+                            .add(latLngBiblioUpA,latLngBiblioDownC)
+                            .width(5)
+                            .color(Color.RED));
+
+                    Polyline lineDB = mMap.addPolyline(new PolylineOptions()
+                            .add(latLngBiblioDownD,latLngBiblioUpB)
+                            .width(5)
+                            .color(Color.RED));
+
+                    Polyline lineDC = mMap.addPolyline(new PolylineOptions()
+                            .add(latLngBiblioDownD,latLngBiblioDownC)
+                            .width(5)
+                            .color(Color.RED));
+
+
+                    if((latLngCurrent.latitude >latLngBiblioDownD.latitude) &&(latLngCurrent.latitude < latLngBiblioUpA.latitude)){
                         //cumple con la latitud
 
-                        if((latLngCurrent.longitude >latLngBiblioDown.longitude) &&(latLngCurrent.longitude < latLngBiblioUp.longitude)){
+                        if((latLngCurrent.longitude >latLngBiblioDownD.longitude) &&(latLngCurrent.longitude < latLngBiblioUpA.longitude)){
                             //cumple con la longitud y se encuentra dentro de la biblioteca
 
                             //Aqui debo aparecer el boton
@@ -252,13 +286,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapClick(LatLng point) {
 
-        //mMap.addMarker(new MarkerOptions().position(point));
+        mMap.addMarker(new MarkerOptions().position(point));
 
 
-        //mMap.addMarker(new MarkerOptions().position(point).title(point.longitude+""));
-
-
-        //me.setSnippet("Ubicacion guardada en : " + getAddress(point.latitude, point.longitude));
+        mMap.addMarker(new MarkerOptions().position(point).title(point.latitude+""));
+        me.setSnippet("Ubicacion guardada en : " + getAddress(point.latitude, point.longitude));
 
 
     }
