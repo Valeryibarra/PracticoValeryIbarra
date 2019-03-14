@@ -284,9 +284,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 @Override
                 public void onLocationChanged(Location location) {
-                    Log.e(">>>", "LAT: " + location.getLatitude() + " , LONG: " + location.getLongitude());
-
-
                     if (me != null) {
                         me.remove();
                     }
@@ -299,39 +296,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     me.setSnippet("Usted se encuentra en: " + getAddress(location.getLatitude(), location.getLongitude()));
 
                     LatLng latLngCurrent = new LatLng(location.getLatitude(), location.getLongitude());
-                    //Esas cordenadas las saque con un texto del marker donde lo puse en las esquinas de la biblio
-                    LatLng latLngBiblioDown = new LatLng(3.3416307, -76.5298169);
-                    LatLng latLngBiblioUp = new LatLng(3.319336233, -76.53010088);
-                    if ((latLngCurrent.latitude > latLngBiblioDown.latitude) && (latLngCurrent.latitude < latLngBiblioUp.latitude)) {
-                        //cumple con la latitud
 
-                        if ((latLngCurrent.longitude > latLngBiblioDown.longitude) && (latLngCurrent.longitude < latLngBiblioUp.longitude)) {
-                            //cumple con la longitud y se encuentra dentro de la biblioteca
-
-                            //Aqui debo aparecer el boton
-
-//                            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.imageButton);
-//                            fab.setEnabled(true);
-
-//                            fab.setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//                                    //Va a la actividad que gestiona el punto de canje
-//                                    Intent i = new Intent(MapsActivity.this, MainActivity.class);
-//                                    startActivity(i);
-//
-//                                }
-//                            });
-
-                            Marker ahorita = mMap.addMarker(new MarkerOptions()
-                                    .position(latLngCurrent)
-                                    .title("ahorita")
-                            );
-                        }
-
+                    //Si esta dentro de la biblioteca muestra ese boton
+                    if((latLngCurrent.latitude >= latLngBiblioDownC.latitude && latLngCurrent.latitude <= latLngBiblioUpB.latitude)&&
+                            (latLngCurrent.longitude >= latLngBiblioDownC.longitude && latLngCurrent.longitude <= latLngBiblioUpB.longitude)){
+                        //Esta dentro de la biblioteca
+                        //mostrar boton de la tienda
+                        fab_biblio.show();
+                    }else{
+                        fab_biblio.hide();
                     }
 
+                    //Si esta dentro del edificio1 (edificio c) muestra ese boton
+                    if((latLngCurrent.latitude >= latLngEdificio1DownC.latitude && latLngCurrent.latitude <= latLngEdificio1UpB.latitude)&&
+                            (latLngCurrent.longitude >= latLngEdificio1DownC.longitude && latLngCurrent.longitude <= latLngEdificio1UpB.longitude)){
+                        //Esta dentro del edificio c
+                        //mostrar boton pero pregunta facil
+                        dificultad_facil=true;
+                        fab_operaciones.show();
+                    }else{
+                        fab_biblio.hide();
+                    }
 
+                    //si esta dentro del edificio2
+                    if((latLngCurrent.latitude >= latLngEdificio2DownC.latitude && latLngCurrent.latitude <= latLngEdificio2UpB.latitude)&&
+                            (latLngCurrent.longitude >= latLngEdificio2DownC.longitude && latLngCurrent.longitude <= latLngEdificio2UpB.longitude)){
+                        //Esta dentro del edificio d
+                        //mostrar boton pero la pregunta dificil
+                        dificultad_facil=false;
+                        fab_operaciones.show();
+                    }else{
+                        fab_biblio.hide();
+                    }
                 }
 
                 @Override
