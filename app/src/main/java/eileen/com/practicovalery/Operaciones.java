@@ -29,7 +29,7 @@ public class Operaciones extends AppCompatActivity {
     private Variable variable;
 
 
-    public int dificultad;
+    public boolean dificultad;
     public String message;
     public int correct;
     public int incorrect1, incorrect2, incorrect3;
@@ -41,6 +41,9 @@ public class Operaciones extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_operaciones);
 
+        Intent datos = getIntent();
+        dificultad = datos.getExtras().getBoolean("dificultad");
+
         correct = 0;
         incorrect1 = 0;
         incorrect2 = 0;
@@ -50,7 +53,6 @@ public class Operaciones extends AppCompatActivity {
         puntaje = variable.getPuntaje();
 
 
-        Log.e(">>>", "mensaje: " + message);
         tv_puntos_actuales = (TextView) findViewById(R.id.tv_puntos_actuales);
         tv_operation = (TextView) findViewById(R.id.tv_operation);
         btn_enviar_operacion = findViewById(R.id.btn_enviar_operacion);
@@ -231,8 +233,16 @@ public class Operaciones extends AppCompatActivity {
     }
 
     private void genOperation() {
-        int a = (int) (Math.random() * ((20 - 1) + 1)) + 1;
-        int b = (int) (Math.random() * ((24 - 1) + 1)) + 1;
+
+        int a=0;
+        int b=0;
+        if(dificultad){
+            a = (int) (Math.random() * ((24 - 1) + 1)) + 1;
+            b = (int) (Math.random() * ((20 - 1) + 1)) + 1;
+        }else{
+            a = (int) (Math.random() * ((42 - 1) + 1)) + 1;
+            b = (int) (Math.random() * ((44 - 1) + 1)) + 1;
+        }
 
 
         int seedOperator = (int) (Math.random() * ((7 - 2) + 1)) + 2;
@@ -301,22 +311,6 @@ public class Operaciones extends AppCompatActivity {
         Intent i = new Intent(Operaciones.this, MapsActivity.class);
         startActivity(i);
 
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this)
-//                .setTitle("SALIR")
-//                .setMessage("¿Desea volver al mapa?")
-//                .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.cancel();
-//                    }
-//                }).setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        Operaciones.super.onBackPressed();
-//                        //System.exit(0);
-//                    }
-//                });
-//        builder.show();
     }
 
 
