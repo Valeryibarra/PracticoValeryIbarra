@@ -48,6 +48,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private FloatingActionButton fab_operaciones;
 
 
+    private LatLng latLngBiblioUpA;
+    private LatLng latLngBiblioUpB;
+    private LatLng latLngBiblioDownC;
+    private LatLng latLngBiblioDownD;
+
+    private  LatLng latLngEdificio1UpA;
+    private  LatLng latLngEdificio1UpB;
+    private LatLng latLngEdificio1DownC;
+    private LatLng latLngEdificio1DownD;
+
+    private  LatLng latLngEdificio2UpA;
+    private  LatLng latLngEdificio2UpB;
+    private LatLng latLngEdificio2DownC;
+    private LatLng latLngEdificio2DownD;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,10 +118,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         //Para la biblioteca
-        final LatLng latLngBiblioUpA = new LatLng(3.341930, -76.530127);
-        final LatLng latLngBiblioUpB = new LatLng(3.341930, -76.529784);
-        final LatLng latLngBiblioDownC = new LatLng(3.341662, -76.530127);
-        LatLng latLngBiblioDownD = new LatLng(3.341662, -76.529784);
+        latLngBiblioUpA = new LatLng(3.341930, -76.530127);
+        latLngBiblioUpB = new LatLng(3.341930, -76.529784);
+        latLngBiblioDownC = new LatLng(3.341662, -76.530127);
+        latLngBiblioDownD = new LatLng(3.341662, -76.529784);
 
         PolygonOptions polygonOptions = new PolygonOptions();
 
@@ -130,10 +147,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .color(Color.BLACK));
 
         //Para el edificioC
-        LatLng latLngEdificio1UpA = new LatLng(3.341191, -76.530464);
-        LatLng latLngEdificio1UpB = new LatLng(3.341191, -76.529885);
-        LatLng latLngEdificio1DownC = new LatLng(3.341030, -76.530464);
-        LatLng latLngEdificio1DownD = new LatLng(3.341030, -76.529885);
+        latLngEdificio1UpA = new LatLng(3.341191, -76.530464);
+        latLngEdificio1UpB = new LatLng(3.341191, -76.529885);
+        latLngEdificio1DownC = new LatLng(3.341030, -76.530464);
+        latLngEdificio1DownD = new LatLng(3.341030, -76.529885);
         //Agregar las lineas
         Polyline lineEdi1AB = mMap.addPolyline(new PolylineOptions()
                 .add(latLngEdificio1UpA, latLngEdificio1UpB)
@@ -156,10 +173,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .color(Color.BLUE));
 
         //Para el edificioD
-        LatLng latLngEdificio2UpA = new LatLng(3.341014, -76.530507);
-        LatLng latLngEdificio2UpB = new LatLng(3.341014, -76.529944);
-        LatLng latLngEdificio2DownC = new LatLng(3.340800, -76.530507);
-        LatLng latLngEdificio2DownD = new LatLng(3.340800, -76.529944);
+        latLngEdificio2UpA = new LatLng(3.341014, -76.530507);
+        latLngEdificio2UpB = new LatLng(3.341014, -76.529944);
+        latLngEdificio2DownC = new LatLng(3.340800, -76.530507);
+        latLngEdificio2DownD = new LatLng(3.340800, -76.529944);
         //Agregar las lineas
         Polyline lineEdi2AB = mMap.addPolyline(new PolylineOptions()
                 .add(latLngEdificio2UpA, latLngEdificio2UpB)
@@ -215,15 +232,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         //Esta dentro de la biblioteca
                         //mostrar boton de la tienda
                         fab_biblio.show();
+                    }else{
+                        fab_biblio.hide();
                     }
 
-                 /*   //Si esta dentro del edificio1 (edificio c) muestra ese boton
+                    //Si esta dentro del edificio1 (edificio c) muestra ese boton
                     if((latLngCurrent.latitude >= latLngEdificio1DownC.latitude && latLngCurrent.latitude <= latLngEdificio1UpB.latitude)&&
                             (latLngCurrent.longitude >= latLngEdificio1DownC.longitude && latLngCurrent.longitude <= latLngEdificio1UpB.longitude)){
                         //Esta dentro del edificio c
                         //mostrar boton pero pregunta facil
                         dificultad_facil=true;
                         fab_operaciones.show();
+                    }else{
+                        fab_biblio.hide();
                     }
 
                     //si esta dentro del edificio2
@@ -233,8 +254,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         //mostrar boton pero la pregunta dificil
                         dificultad_facil=false;
                         fab_operaciones.show();
+                    }else{
+                        fab_biblio.hide();
                     }
-*/
                 }
 
                 @Override

@@ -1,5 +1,7 @@
 package eileen.com.practicovalery;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +15,8 @@ import android.widget.Toast;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
 
+import java.util.UUID;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView tv_puntos_biblio;
@@ -22,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton rb_libreta;
     private RadioButton rb_camiseta;
     private RadioButton rb_saco;
+
+    private final static String ST_ICESI="ICESI";
+    private UUID uuid;
 
     //para la variable global que es donde esta el puntaje
     private Variable variable;
@@ -45,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         variable = (Variable) getApplication();
         puntaje = variable.getPuntaje();
+        uuid= UUID.randomUUID();
 
 
         tv_puntos_biblio.setText(puntaje + "");
@@ -60,75 +68,154 @@ public class MainActivity extends AppCompatActivity {
                         puntaje -= 20;
                         variable.setPuntaje(puntaje);
                         tv_puntos_biblio.setText(puntaje + "");
-                        toast1 =
-                                Toast.makeText(getApplicationContext(),
-                                        "Acabas de comprar un Lapicero Icesi", Toast.LENGTH_LONG);
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+
+                        String randomUUIDString = uuid.toString().substring(0,13);
+
+
+                        builder1.setMessage("Tu codigo redimible es :\n"+randomUUIDString+ST_ICESI);
+                        builder1.setCancelable(true);
+
+                        builder1.setPositiveButton(
+                                "Vale, gracias",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        AlertDialog alert11 = builder1.create();
+                        alert11.show();
                     } else {
                         toast1 =
                                 Toast.makeText(getApplicationContext(),
                                         "No tienes el puntaje necesario para la compra", Toast.LENGTH_LONG);
+                        toast1.show();
                     }
-                    toast1.show();
                 } else if (rb_cuaderno.isChecked()) {
                     //descuento 30
                     if (puntaje >= 30) {
                         puntaje -= 30;
                         variable.setPuntaje(puntaje);
                         tv_puntos_biblio.setText(puntaje + "");
-                        toast1 =
-                                Toast.makeText(getApplicationContext(),
-                                        "Acabas de comprar un Cuaderno Icesi", Toast.LENGTH_LONG);
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+
+                        String randomUUIDString = uuid.toString().substring(0,13);
+
+
+                        builder1.setMessage("Tu codigo redimible es :\n"+randomUUIDString+ST_ICESI);
+                        builder1.setCancelable(true);
+
+                        builder1.setPositiveButton(
+                                "Vale, gracias",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        AlertDialog alert11 = builder1.create();
+                        alert11.show();
                     } else {
                         toast1 =
                                 Toast.makeText(getApplicationContext(),
                                         "No tienes el puntaje necesario para la compra", Toast.LENGTH_LONG);
+                        toast1.show();
+
                     }
-                    toast1.show();
                 } else if (rb_libreta.isChecked()) {
                     //descuento 40
                     if (puntaje >= 40) {
                         puntaje -= 40;
                         variable.setPuntaje(puntaje);
                         tv_puntos_biblio.setText(puntaje + "");
-                        toast1 =
-                                Toast.makeText(getApplicationContext(),
-                                        "Acabas de comprar una Libreta Icesi", Toast.LENGTH_LONG);
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+
+                        String randomUUIDString = uuid.toString().substring(0,13);
+
+
+                        builder1.setMessage("Tu codigo redimible es :\n"+randomUUIDString+ST_ICESI);
+                        builder1.setCancelable(true);
+
+                        builder1.setPositiveButton(
+                                "Vale, gracias",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        AlertDialog alert11 = builder1.create();
+                        alert11.show();
                     } else {
                         toast1 =
                                 Toast.makeText(getApplicationContext(),
                                         "No tienes el puntaje necesario para la compra", Toast.LENGTH_LONG);
+                        toast1.show();
+
                     }
-                    toast1.show();
                 } else if (rb_camiseta.isChecked()) {
                     //descuento 80
                     if (puntaje >= 80) {
                         puntaje -= 80;
                         variable.setPuntaje(puntaje);
                         tv_puntos_biblio.setText(puntaje + "");
-                        toast1 =
-                                Toast.makeText(getApplicationContext(),
-                                        "Acabas de comprar una Camiseta Icesi", Toast.LENGTH_LONG);
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+
+                        String randomUUIDString = uuid.toString().substring(0,13);
+
+
+                        builder1.setMessage("Tu codigo redimible es :\n"+randomUUIDString+ST_ICESI);
+                        builder1.setCancelable(true);
+
+                        builder1.setPositiveButton(
+                                "Vale, gracias",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        AlertDialog alert11 = builder1.create();
+                        alert11.show();
                     } else {
                         toast1 =
                                 Toast.makeText(getApplicationContext(),
                                         "No tienes el puntaje necesario para la compra", Toast.LENGTH_LONG);
+                        toast1.show();
+
                     }
-                    toast1.show();
                 } else if (rb_saco.isChecked()) {
                     //descuento 100
                     if (puntaje >= 100) {
                         puntaje -= 100;
                         variable.setPuntaje(puntaje);
                         tv_puntos_biblio.setText(puntaje + "");
-                        toast1 =
-                                Toast.makeText(getApplicationContext(),
-                                        "Acabas de comprar un Saco Icesi", Toast.LENGTH_LONG);
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+
+                        String randomUUIDString = uuid.toString().substring(0,13);
+
+
+                        builder1.setMessage("Tu codigo redimible es :\n"+randomUUIDString+ST_ICESI);
+                        builder1.setCancelable(true);
+
+                        builder1.setPositiveButton(
+                                "Vale, gracias",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        AlertDialog alert11 = builder1.create();
+                        alert11.show();
                     } else {
                         toast1 =
                                 Toast.makeText(getApplicationContext(),
                                         "No tienes el puntaje necesario para la compra", Toast.LENGTH_LONG);
+                        toast1.show();
+
                     }
-                    toast1.show();
                 }
 
 //                Intent i = new Intent(MainActivity.this, Profile.class);
